@@ -1,4 +1,4 @@
-👋 Welcome to the README file! You will find more information into the current repository with the purpose of this project and the features or functionalities I tried.
+👋 Welcome to the README file! This repository is exclusiv for this entire project You will find more information into the current repository with the purpose of this project and the features or functionalities I tried.
 
 This code retrieves data from the Tor network and populates a database with it. It also allows users to search for a keyword on several search engines through a Tor proxy. This repository will be updated as soon as posible it has a live demo in this Onion address: `[http://like5dbbczvrnsa52vfw4zcifvobpdlx7hxzr3ley6tltaqdg3cqjtqd.onion/]`
 
