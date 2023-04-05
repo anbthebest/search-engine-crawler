@@ -1,4 +1,5 @@
 🔎 Onion Search Engine
+
 Onion Search Engine is a web application that allows users to search for content on the Tor network. This search engine is designed to run on the Flask framework and uses SQLite3 to store search results. The purpose is store and retrieve links with onion format, it has a several regEx and fucntions for example there is a function called search() that performs two main tasks. The first task is to check if there are any search results already stored in the database for the given keyword. If there are no search results, it scrapes the search engines provided in the code for links containing the keyword and saves them to the database.
 
 The second task is to retrieve the stored search results from the database and display them to the user in a paginated format.
@@ -52,6 +53,7 @@ Onion Search Engine is released under the MIT License. See LICENSE for more info
 Now the Frontend features
 
 🌟 Onion Search Engine Front-End Project 🌟
+![Alt text](/images/frontpage.png)
 This is a cool front-end project that I built using HTML, CSS, and JavaScript. It's a single-page application that allows users to search for and view information about different animals.
 
 🚀 Getting Started
