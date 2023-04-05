@@ -53,7 +53,8 @@ Onion Search Engine is released under the MIT License. See LICENSE for more info
 Now the Frontend features
 
 🌟 Onion Search Engine Front-End Project 🌟
-![Front Page Image](search-engine-crawler/Onion%20Search%20Engine%20Based%20Tor%20Network/images/frontpage.png)
+![Front Page Image](https://github.com/anbthebest/search-engine-crawler/blob/main/Onion%20Search%20Engine%20Based%20Tor%20Network/images/frontpage.png?raw=true)
+
 
 This is a cool front-end project that I built using HTML, CSS, and JavaScript. It's a single-page application that allows users to search for and view information about different animals.
 
