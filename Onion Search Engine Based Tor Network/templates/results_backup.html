@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search Engine | Results by title,description or uuid</title>
+	
+	<style>
+		body{
+			background-color: #333;
+			color:#fff;
+		}
+		a{
+			color: white;
+			cursor: pointer;
+		}
+		a:focus{
+			color:rgb(231, 12, 158);
+		}
+		a:visited{
+			color: lightgrey;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<a href="/">Back</a> - 
+	</header>
+	<h1>Search Results for "{{ keyword }}"</h1>
+	{% if total_results == 0 %}
+		<p>No results found.</p>
+	{% else %}
+		<p>{{ total_results }} results found.</p>
+		<ul>
+			{% for result in results %}
+				<li><a href="{{ result[0] }}">{{ result[1] }}</a></li>
+			{% endfor %}
+		</ul>
+		{% if total_pages > 1 %}
+			<p>Page {{ page }} of {{ total_pages }}</p>
+			{% if page > 1 %}
+				<a href="{{ url_for('search', keyword=keyword, page=page-1, per_page=per_page) }}">Previous</a>
+			{% endif %}
+			{% for p in page_range %}
+				{% if p == page %}
+					<span>{{ p }}</span>
+				{% else %}
+					<a href="{{ url_for('search', keyword=keyword, page=p, per_page=per_page) }}">{{ p }}</a>
+				{% endif %}
+			{% endfor %}
+			{% if page < total_pages %}
+				<a href="{{ url_for('search', keyword=keyword, page=page+1, per_page=per_page) }}">Next</a>
+			{% endif %}
+		{% endif %}
+	{% endif %}
+</body>
+</html>

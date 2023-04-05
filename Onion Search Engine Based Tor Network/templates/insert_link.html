@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Insert Hidden Service</title>
+  </head>
+  <style>
+    body{
+      background-color: #333;
+      color: white;
+    }
+    #page{
+      max-width: 944px;
+      margin: 0 auto;
+    }
+  </style>
+  <body>
+    <header class="top-header">
+      <nav>
+        <ul style="list-style-type: none;">
+         
+          <li><a href="/insert">+ add a hidden service</a></li>
+          <li><a href="/contact">Contact </a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+    <h1>Insert Link</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('insert_link') }}" method="post">
+      <div>
+        <label for="link">Link:</label>
+        <input type="text" name="link" id="link" required>
+      </div>
+      <div>
+        <label for="text">Text:</label>
+        <select name="text" id="text" required>
+          <option value="">Select</option>
+          <option value="Text 1">Links</option>
+          <option value="Text 2">Markets</option>
+          <option value="Text 3">Others</option>
+        </select>
+      </div>
+      <div>
+        <button type="submit">Insert Link</button>
+      </div>
+    </form>
+    </main>
+  </body>
+</html>

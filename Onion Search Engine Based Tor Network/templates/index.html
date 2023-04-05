@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Like Search Engine | Browsing Tor network at relative high speed </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <style>
+/* Simple CSS Styles /
+/ Set height of html and body to 100% and remove any default margin */
+html,
+body {
+height: 100%;
+margin: 0;
+overflow: hidden;
+}
+
+/* Set background color to #333 and add background image to body */
+/* Adjust font size and make the background image cover the screen */
+body {
+background-color: #333; /* when the images is not allowed :) */
+font-size: 10pt;
+background-image: url("static/img/bg_wolf.png");
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+/* Change background image for screens smaller than 768px */
+@media (max-width: 768px) {
+body {
+background-image: url("static/img/bg_wolf.png");
+}
+}
+
+/* Set container to be relative and have height of 100vh (100% of viewport height) */
+.container {
+position: relative;
+height: 100vh;
+}
+
+/* Set font size to 14px for screens smaller than 600px */
+@media only screen and (max-width: 600px) {
+.search-container {
+font-size: 14px;
+}
+}
+
+/* Style for the search container */
+.search-container {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 999;
+background-color: rgba(255, 255, 255, 0.7);
+border: 2px solid #f7f7f7;
+padding: 20px;
+text-align: center;
+}
+
+/* Style for the search container heading */
+.search-container h1 {
+color: #f7f7f7;
+font-size: 3em;
+text-shadow: 1px 1px 2px rgb(0, 0, 0);
+margin-bottom: 20px;
+}
+
+/* Style for the search container form */
+.search-container form {
+display: inline-block;
+text-align: left;
+}
+
+/* Style for the search container label */
+.search-container label {
+display: block;
+color: #555;
+font-size: 1.2em;
+margin-bottom: 5px;
+}
+
+/* Style for the search container input */
+.search-container input[type="text"] {
+padding: 10px;
+font-size: 1.2em;
+border-radius: 5px;
+border: 2px solid #ccc;
+width: 60%;
+margin-bottom: 10px;
+}
+
+/* Style for the search container submit button */
+.search-container button[type="submit"] {
+padding: 10px 20px;
+font-size: 1.2em;
+border-radius: 5px;
+border: none;
+background-color: #555;
+color: #fff;
+cursor: pointer;
+}
+
+/* Style for the search container submit button on hover */
+.search-container button[type="submit"]:hover {
+background-color: #333;
+}
+
+.top-header {
+  height: 35px;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1.7px solid ghostwhite;
+}
+
+.top-header a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0 10px;
+  display: block;
+  cursor: pointer;
+}
+
+
+
+
+
+    </style>
+  </head>
+  <body>
+    <header class="top-header">
+      <nav>
+        <ul style="list-style-type: none;display: inline-flex;">
+         
+          <li><a href="/insert">+ add a hidden service</a></li>
+          <li><a href="/contact">Contact </a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    
+    <div class="container">
+      <div class="search-container">
+        <h1>Like Search Engine</h1>
+        <p>Total number of Indexed onions pages: <span id="total_rows">{{ total_rows }}</span></p>
+
+        <!-- <p>Total number of Indexed onions pages: {{ total_rows }}</p> -->
+        <form action="{{ url_for('search', keyword=request.args.get('keyword', '')) }}" method="POST">
+          
+          <label for="keyword">Query:</label>
+          <input type="text" name="keyword" id="keyword" required autocomplete="off" maxlength="40" pattern="[a-zA-Z0-9 ]{3,40}">
+          <button type="submit">Search</button>
+          <div class="invalid-feedback" style="text-shadow: 1px 1px 1px #fff;">
+            Please enter a keyword with at least 3 characters and no special characters.
+          </div>
+        </form>
+        
+        
+        
+      </div>
+    </div>
+    <script>
+      
+  // Function to update the total number of indexed pages
+  function updateTotalRows() {
+    fetch('/get_total_rows')
+      .then(response => response.text())
+      .then(total_rows => {
+        document.querySelector('#total_rows').textContent = total_rows;
+      });
+  }
+
+  // Update the total number of indexed pages on page load
+  updateTotalRows();
+
+  // Update the total number of indexed pages every 5 minutes
+  setInterval(updateTotalRows, 800000);
+</script>
+
+    
+  </body>
+</html>

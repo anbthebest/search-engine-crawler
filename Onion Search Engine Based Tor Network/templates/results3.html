@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Search Results</title>
+  <style>
+    body{
+      background-color: #333;
+      color: white;
+    }
+    a{
+			color: white;
+			cursor: pointer;
+		}
+		a:focus{
+			color:rgb(231, 12, 158);
+		}
+		a:visited{
+			color: lightgrey;
+		}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #ddd;
+    }
+  
+      .results {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .result {
+        width: 30%;
+        margin: 1em;
+        text-align: center;
+      }
+      .result a {
+        display: block;
+        text-decoration: none;
+        color: black;
+      }
+      .pagination {
+        display: inline-flex;
+        justify-content: center;
+        margin: 0.7em 0;
+      }
+      .page-number {
+        margin: 0 0.6em;
+      }
+      ul.pagination {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+ul.pagination li {
+  display: inline;
+  padding: 4px;
+  background-color: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 9px;
+  text-align: center;
+}
+
+ul.pagination li a {
+  text-decoration: none;
+  color: black;
+}
+
+ul.pagination li.active {
+  background-color: #4CAF50;
+  color: white;
+}
+  </style>
+</head>
+<body>
+  <header >
+  <h1><a href="/">Search Engine</a></h1>
+  <small>Total number of Indexed onions pages: <span id="total_rows">{{ total_rows }}</span></small>
+  <form action="{{ url_for('search', keyword=request.args.get('keyword', '')) }}" method="GET">
+    
+    <label for="keyword">Query:</label>
+    <input type="text" name="keyword" id="keyword" required autocomplete="off" maxlength="40" pattern="[a-zA-Z0-9 ]{3,40}">
+    <button type="submit">Search</button>
+    <div class="invalid-feedback" style="text-shadow: 1px 1px 1px #fff;">
+      Please enter a keyword with at least 3 characters and no special characters.
+    </div>
+  </form>
+
+  <table >
+    <tr>
+      <th>Link</th>
+      <th>Text</th>
+    </tr>
+    {% for result in results %}
+    <tr>
+      <td><a href="{{ result[0] }}">{{ result[0] }}</a></td>
+      <td>{{ result[1] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  </header>
+  <div>
+    <p>Showing {{ per_page }} results per page, page {{ page }} of {{ total_results // per_page + 1 }}</p>
+    <ul class="pagination">
+      {% for i in range(1, (total_results // per_page) + 2) %}
+        {% set params = {'per_page': per_page, 'keyword': keyword, 'page': i} %}
+        <li {% if i == page %}class="active"{% endif %}>
+          <a href="{{ url_for('search', **params) }}">{{ i }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+
+
+  
+  
+</body>
+</html>

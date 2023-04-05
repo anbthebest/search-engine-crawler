@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tor Network Nodes</title>
+    <style>
+        /* Styling for the table */
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+th, td {
+text-align: left;
+padding: 8px;
+}
+
+th {
+background-color: #555;
+color: white;
+}
+
+tr:nth-child(even) {
+background-color: #f2f2f2;
+}
+
+/* Pagination styling */
+.pagination {
+display: inline-block;
+}
+
+.pagination a {
+color: black;
+float: left;
+padding: 8px 16px;
+text-decoration: none;
+transition: background-color .3s;
+border: 1px solid #ddd;
+}
+
+.pagination a.active {
+background-color: #555;
+color: white;
+border: 1px solid #555;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+    </style>
+  </head>
+  <body>
+    <h1>Nodes</h1>
+    <table>
+      <tr>
+        <th>Node Name</th>
+        <th>Node Type</th>
+        <th>Country Code</th>
+        <th>IP Address</th>
+        <th>Bandwidth</th>
+        <th>Last Updated</th>
+        <th>Uptime</th>
+      </tr>
+      {% for node in nodes %}
+      <tr>
+        <td>{{ node[0] }}</td>
+        <td>{{ node[1] }}</td>
+        <td>{{ node[2] }}</td>
+        <td>{{ node[3] }}</td>
+        <td>{{ node[4] }}</td>
+        <td>{{ node[5] }}</td>
+        <td>{{ node[6] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <div class="pagination">
+      {% if page > 1 %}
+      <a href="?page={{ page - 1 }}">Previous</a>
+      {% endif %}
+      {% for num in range(1, total_pages + 1) %}
+      {% if page == num %}
+      <a href="?page={{ num }}" class="active">{{ num }}</a>
+      {% else %}
+      <a href="?page={{ num }}">{{ num }}</a>
+      {% endif %}
+      {% endfor %}
+      {% if page < total_pages %}
+      <a href="?page={{ page + 1 }}">Next</a>
+      {% endif %}
+    </div>
+  </body>
+</html>
