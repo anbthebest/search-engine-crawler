@@ -2,6 +2,8 @@
 
 This code retrieves data from the Tor network and populates a database with it. It also allows users to search for a keyword on several search engines through a Tor proxy. This repository will be updated as soon as posible it has a live demo in this Onion address: `[http://like5dbbczvrnsa52vfw4zcifvobpdlx7hxzr3ley6tltaqdg3cqjtqd.onion/]`
 
+The Search engine is Up and Runing 11.06.23 with more than 92224 Indexed onions
+
 📂 File Structure:
 
 main.py: Main file containing Flask routes and functions to retrieve and populate data in the database.
